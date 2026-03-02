@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
@@ -372,6 +373,10 @@ def main():
     
     # Save hyperparameter tuning results
     save_hyperparameter_results(grid_search)
+
+    # Save trained model for Streamlit app inference
+    joblib.dump(best_model, 'machine_failure_model.pkl')
+    print("Saved trained model to 'machine_failure_model.pkl'")
     
     print("\n" + "="*70)
     print("PROCESS COMPLETED SUCCESSFULLY!")
